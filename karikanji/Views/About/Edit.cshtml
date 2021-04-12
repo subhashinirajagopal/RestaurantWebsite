@@ -1,0 +1,45 @@
+﻿@model karikanji.Models.About
+
+@{
+    ViewBag.Title = "Edit";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />  
+<br />  
+<br /> 
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>About</legend>
+
+        @Html.HiddenFor(model => model.AboutId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description,  new { cols = 20, @rows = 20 })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to About Page", "Detail")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

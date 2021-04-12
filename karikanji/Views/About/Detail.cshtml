@@ -1,0 +1,63 @@
+@{
+    ViewBag.Title = "Family friendly Madurai restaurant - About Us";
+}
+
+@model karikanji.Models.About
+<br />
+    <br />
+<br />
+<br />
+<br />
+<br />  
+<br />  
+<br /> 
+@if (User.Identity.IsAuthenticated)
+{
+    <br />  
+    <br />  
+    <br /> 
+<div class="container" style="padding-top: 10px;">
+    <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("Edit", "About", new { id=Model.AboutId })'"><i class="glyphicon glyphicon-pencil"></i>&nbsp;Edit</button>
+</div>    
+}
+<style>
+    div#body {
+        background: #ff8000;
+        color: black;
+        overflow: hidden;
+    }
+
+html {
+        background: #ff8000;
+    }
+</style>
+
+<br />
+<h2 style="text-align:center;">
+<span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Discover</span>
+<span style="font-family:sans-serif;letter-spacing:10px;text-transform:uppercase; border-bottom:ridge; border-bottom-width:thin; bottom:-30px; ">Our Story</span>
+</h2>
+<br />
+
+
+<section class="content-wrapper">
+     <div class="row">
+         <div class="col-sm-6">
+        <p style="font-size:20px; text-align:justify; font-family:'Times New Roman'; ">
+        <strong>
+            @Html.DisplayFor(a => Model.Description)
+        </strong>
+        </p> 
+        
+        </div>
+         
+         <div class="col-sm-6 desktop">
+        <img src ="@Url.Content("~/Images/rsz_buiilding.jpg")" alt="new Madurai restaurant" width="400" height="500" /> 
+         </div>  
+         
+    </div>                  
+
+</section>
+    
+
+

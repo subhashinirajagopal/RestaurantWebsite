@@ -1,0 +1,132 @@
+@{
+    ViewBag.Title = "Tallakulam's tasty meals and side dishes";
+}
+
+@model List<karikanji.Models.Menu>
+<style>
+    div.burgers.biryani-background {
+        background-image: url("/images/rsz_1dsc_7689.jpg");
+        color: black;
+        background-position: 20% 30%;
+        background-size: cover;
+    }
+
+    div#body {
+        background: #ADB500;
+        overflow: hidden;
+    }
+
+    .dotted {border: 1px dashed white; border-style: none none dotted; color: #fff; background-color: #fff; }
+</style>
+<div class="menu-rows">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />  
+<br />  
+<br />  
+@if (User.Identity.IsAuthenticated)
+{
+<div class="row burgers" style="padding-top: 10px;">
+    <div class="container">
+        <button type="button" class="btn btn-primary pull-right" onclick="location.href='@Url.Action("Add", "Menu")'"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add New Menu</button>
+    </div>
+<br />
+</div>
+}
+
+<div class="row burgers biryani-background desktop" title="famous mutton biriyani">
+    <div class="col-sm-6 box burgers">
+    </div>
+    <div class="col-sm-6 box burgers" style="background: #ADB500; height: auto;">
+        @foreach (var item in Model.Where(i => i.MenuType == karikanji.Constants.MenuType.Biryani))
+    {
+        <h3>
+            <span style="color: #270901;">@Html.DisplayFor(modelItem => item.Name) ... @Html.DisplayFor(modelItem => item.Price)/-</span>
+
+
+            @if (User.Identity.IsAuthenticated)
+        {
+            <button type="button" class="btn btn-xs btn-success" onclick="location.href='@Url.Action("Edit", "Menu", new {id = item.MenuId})'"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" onclick="location.href='@Url.Action("Delete", "Menu", new {id = item.MenuId})'"><i class="glyphicon glyphicon-trash"></i></button>
+    }
+        </h3>
+        <hr class='dotted' />
+}
+    </div>
+</div>
+
+<div class="row burgers mobile_device_800px" id="biryaniMenu">
+    <div class="col-sm-12 box burgers">
+        <h2 style="text-align:center;">
+            <span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Biryani</span>
+        </h2>
+        @foreach (var item in Model.Where(i => i.MenuType == karikanji.Constants.MenuType.Biryani))
+    {
+        <h3>
+            <span style="color: #270901; padding-left: 0.5em;">@Html.DisplayFor(modelItem => item.Name) ... @Html.DisplayFor(modelItem => item.Price)/-</span>
+
+
+            @if (User.Identity.IsAuthenticated)
+        {
+            <button type="button" class="btn btn-xs btn-success" onclick="location.href='@Url.Action("Edit", "Menu", new {id = item.MenuId})'"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button type="button" class="btn btn-xs btn-danger" onclick="location.href='@Url.Action("Delete", "Menu", new {id = item.MenuId})'"><i class="glyphicon glyphicon-trash"></i></button>
+    }
+        </h3>
+        <hr class='dotted' />
+}
+    </div>
+</div>
+
+<div class="row burgers">
+<div class="col-sm-6 box burgers" id="sideDishMenu">
+<h2 style="text-align:center;">
+<span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Side Dish</span>
+</h2>
+    @foreach (var item in Model.Where(i => i.MenuType == karikanji.Constants.MenuType.SideDish))
+{
+<h3>
+    <div class="dot-div"></div>
+    <div class="text-div">
+      <span class="text-span">@Html.DisplayFor(modelItem => item.Name)</span>
+      <span class="text-span pull-right-dottedline">@Html.DisplayFor(modelItem => item.Price)/-</span>
+    </div>                              
+@if (User.Identity.IsAuthenticated)
+{
+    <button type="button" class="btn btn-xs btn-success" onclick="location.href='@Url.Action("Edit", "Menu", new { id=item.MenuId })'"><i class="glyphicon glyphicon-pencil"></i></button>
+    <button type="button" class="btn btn-xs btn-danger" onclick="location.href='@Url.Action("Delete", "Menu", new { id=item.MenuId })'"><i class="glyphicon glyphicon-trash"></i></button>
+}
+</h3>
+}
+</div>
+<div class="col-sm-6 box burgers" id="dinnerMenu">
+  <h2 style="text-align:center;">
+<span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Dinner</span>
+</h2>
+    @foreach (var item in Model.Where(i => i.MenuType == karikanji.Constants.MenuType.Dinner))
+{
+<h3>
+    <div class="dot-div"></div>
+    <div class="text-div">
+      <span class="text-span">@Html.DisplayFor(modelItem => item.Name)</span>
+      <span class="text-span pull-right-dottedline">@Html.DisplayFor(modelItem => item.Price)/-</span>
+    </div>
+                                   
+@if (User.Identity.IsAuthenticated)
+{
+    <button type="button" class="btn btn-xs btn-success" onclick="location.href='@Url.Action("Edit", "Menu", new { id=item.MenuId })'"><i class="glyphicon glyphicon-pencil"></i></button>
+    <button type="button" class="btn btn-xs btn-danger" onclick="location.href='@Url.Action("Delete", "Menu", new { id=item.MenuId })'"><i class="glyphicon glyphicon-trash"></i></button>
+}
+</h3>
+}
+</div>
+</div>
+
+</div>
+
+
+
+
+

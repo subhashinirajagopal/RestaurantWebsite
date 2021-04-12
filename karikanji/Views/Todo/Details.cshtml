@@ -1,0 +1,22 @@
+﻿@model karikanji.Models.Todo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Todo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ThingsToDo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ThingsToDo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TodoId }) |
+    @Html.ActionLink("Back to List", "Home")
+</p>

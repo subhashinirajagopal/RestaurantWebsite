@@ -1,0 +1,94 @@
+@model List<karikanji.ViewModels.ComboViewModel>
+@{
+    ViewBag.Title = "Tallakulam, Madurai's Leading Biryani restaurant";
+}
+
+<style>
+    div#body {
+        background: #ff8000;
+        color: #f09400;
+    }
+</style>
+
+<div id="myCarousel" class="carousel  fade-carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" style=" width:100%; height: 100%">
+        <div class="item active">
+            <img src="~/Images/DSC_7657.jpg" alt="Karikanji full meals" style="width:100%;height:100%">
+        </div>
+
+        <div class="item">
+            <img src="~/Images/DSC_7678.jpg" alt="Karikanji special meals" style="width:100%;height:100%">
+        </div>
+    
+        <div class="item">
+            <img src="~/Images/rsz_1dsc_7689.jpg" alt="Karikanji mutton biryani" style="width:100%;height:100%">
+        </div>
+
+        <div class="item">
+            <img src="~/Images/DSC_7691.jpg" alt="Karikanji fish fry" style="width:100%;height:100%">
+        </div>
+        <div class="item">
+            <img src="~/Images/DSC_7693.jpg" alt="KK3 meals" style="width:100%;height:100%">
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+<div class="container" style="padding-top: 10px;">
+<div class="btn-group">  
+    <button type="button" class="btn btn-primary pull-right" onclick="location.href='@Url.Action("ComboAdd", "MainPage")'"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add New KK Combo</button>
+  </div>
+</div>
+<br />
+}
+
+<section id="specialDeals">
+    <div class="container">
+        <div class="row">
+            @foreach (var deal in Model)
+            {
+                <div class="col-md-4" style="padding-bottom:20px;">
+                    <div class="comb" style="background:#270901">
+                        <h3 class="maincat notopmarg text-center">
+                            @Html.DisplayFor(modelItem => deal.ComboName)&nbsp;&nbsp;
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <button type="button" class="btn btn-xs btn-primary" onclick="location.href='@Url.Action("ComboItemAdd", "MainPage", new { id=deal.MenuId })'"><i class="glyphicon glyphicon-plus"></i></button>
+                                <button type="button" class="btn btn-xs btn-success" onclick="location.href='@Url.Action("ComboEdit", "MainPage", new { id=deal.MenuId })'"><i class="glyphicon glyphicon-pencil"></i></button>
+                                <button type="button" class="btn btn-xs btn-danger" onclick="location.href='@Url.Action("ComboDelete", "MainPage", new { id=deal.MenuId })'"><i class="glyphicon glyphicon-trash"></i></button>
+                            }
+                            <span class="pull-right" style="color: #ff6004">@Html.DisplayFor(modelitem => deal.ComboPrice)/-</span>
+                        </h3>
+                        @foreach (var food in deal.ItemList)
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => food.Item)  @if (User.Identity.IsAuthenticated)
+                                                                          {
+                                                                              <button type="button" class="btn btn-xs btn-danger pull-right" onclick="location.href='@Url.Action("ComboItemDelete", "MainPage", new { id=food.ComboId })'"><i class="glyphicon glyphicon-trash"></i></button>
+                                                                              <button type="button" class="btn btn-xs btn-success pull-right" onclick="location.href='@Url.Action("ComboItemEdit", "MainPage", new { id=food.ComboId })'"><i class="glyphicon glyphicon-pencil"></i></button>
+                                                                          }
+                            </p>
+                        }
+                    
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

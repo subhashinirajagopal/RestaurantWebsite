@@ -1,0 +1,146 @@
+@{
+    ViewBag.Title = "Contact us for awesome food deals in Madurai";
+
+ }
+@model karikanji.Models.Contact
+
+<style>
+    
+ div#body {      
+     background: #270901;
+     color: #f09400;
+    }
+
+ div.visitUs1 {
+        background-image: url("/images/dsc_1506n.jpg");
+        background-size: cover;
+    }
+
+  div.visitUs2 {
+        background-image: url("/images/dsc_1576.jpg");
+        background-size: cover;
+    }
+
+</style>
+<script>
+function initMap() {
+    var kariKanji = { lat: 9.937402, lng: 78.137099 };
+
+    var centerLocation = { lat: 9.919580, lng: 78.119167 };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: centerLocation
+    });
+    var marker = new google.maps.Marker({
+        position: kariKanji,
+        map: map
+    });
+}
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key= AIzaSyBcB09qXB3MJrOOTwrKJzy5lETX84HxfOU&callback=initMap">
+</script>
+<body>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />  
+<br />  
+<br /> 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="container" style="padding-top: 10px;">
+        <button type="button" class="btn btn-danger pull-right" onclick="location.href='@Url.Action("Edit", "Contact", new { id=Model.ContactId })'"><i class="glyphicon glyphicon-pencil"></i>&nbsp;Edit</button>
+    </div>
+}
+<div id="wrap" class="container">
+    <section id="contactUs">
+        <h2 style="text-align:center;">
+            <span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Get in Touch with us</span>
+        </h2>
+        <br />
+        <div class="row">
+            <div class="col-md-3">
+                <a href="mailto:@Html.DisplayFor(a => Model.Email)" style="display: block">
+                    <div class="circle orange"><i class="glyphicon glyphicon-envelope" style="font-size:75px;vertical-align: middle;text-align:center;"></i></div>
+                    <p class="underlineBelow">Email</p>
+                    <p style="vertical-align:middle; text-align:center;color: #f09400;">
+                        @Html.DisplayFor(a => Model.Email)
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="https://www.facebook.com/KariKanji/" style="display: block">
+                    <div class="circle orange"><img src="~/Images/facebook-logo.png" alt="Facebook"  width="75" height="75" /></div>
+                    <p class="underlineBelow">Facebook</p>
+                    <p style="vertical-align:middle; text-align:center;color: #f09400;">
+                        Follow us
+                    </p>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <div class="circle orange"><i class="glyphicon glyphicon-earphone" style="font-size:75px;vertical-align: middle;text-align:center;"></i></div>
+                <p class="underlineBelow">Phone</p>
+                <p style="vertical-align:middle; text-align:center;">
+                    @Html.DisplayFor(a => Model.PhoneNumber)
+                </p>
+
+            </div>
+            <div class="col-md-3">
+                <div class="circle orange"><i class="glyphicon glyphicon-time" style="font-size:75px;vertical-align: middle;text-align:center;"></i></div>
+                <p class="underlineBelow">Timings</p>
+                <p style="vertical-align:middle; text-align:center;">
+                    @Html.DisplayFor(a => Model.Timings)
+                </p>
+            </div>
+        </div>
+    </section>
+    <br />
+    <section id="findUs">
+        <h2 style="text-align:center;">
+            <span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Find us</span>
+        </h2>
+        <div class="row">
+            <div class="col-md-10">
+                <div id="map" style="height: 400px;width: 100%;"></div>
+            </div>
+            <div class="col-md-2">
+                <p class="underlineBelow">Our Address</p>
+                <ul itemprop="address">
+                    <li itemprop="streetAddress">@Html.DisplayFor(a => Model.AddressLine1), @Html.DisplayFor(a => Model.AddressLine2)</li>
+                    <li itemprop="streetAddress">@Html.DisplayFor(a => Model.AddressLine3)</li>
+                    <li itemprop="addressRegion">@Html.DisplayFor(a => Model.City)</li>
+                    <li itemprop="postalCode">@Html.DisplayFor(a => Model.Pincode)</li>
+                </ul>
+                <meta itemprop="addressCountry" content="India">
+                <meta itemprop="addressCity" content="Madurai">
+                <meta itemprop="telephone" content="@Html.DisplayFor(a => Model.PhoneNumber)">
+            </div>
+        </div>
+    </section>
+
+    <br />
+    <section id="visitUs" class="desktop">
+        <h2 style="text-align:center;"><span style="font-family:'Great Vibes';color:red;font-size:65px; display:block; padding-bottom:0;">Visit us</span></h2>
+        <div class="row">
+            <div class="col-sm-6 visitUs2" title="karikanji family restaurant" style="width:50%;height:500px;"></div>
+            <div class="col-sm-6 visitUs1" title="karikanji table" style="width:50%;height:500px;"></div>
+        </div>
+    </section>
+</div>
+</body>
+<footer>
+    <br />
+    <div class="content-wrapper" style="color: #ff8000;">
+        <p>
+            <strong>&copy; @DateTime.Now.Year All rights reserved, Subhashini Rajagopal</strong>
+        </p>
+        <a style="color: #ff8000;" href="@Url.Action("Login", "Account", routeValues: null)">
+            <span class="glyphicon glyphicon-log-in"></span> Log in
+        </a>
+    </div>
+
+</footer>

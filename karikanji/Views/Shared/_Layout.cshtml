@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title | Karikanji</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Karikanji is one of the leading restaurants in Madurai, Tallakulam. You could get awesome biryani (biriyani) deals here at a very affordable price. Best Chettinad restaurant in Madurai, Tallakulam for all you can eat south indian full meals for lunch at reasonable prices. Kids friendly Madurai restaurant. Ask for Karikanjis special Non Veg meals here. The Best Biryanis a.ka.Biriyanis Madurai Tallakulam Has To Offer. Customers come again and again for our Mutton Biriyani / Biryani, 3 star 5 star parotta / paratha, combo meals, crab lollipop, crab cake, pigeon roast and rabbit roast. We serve variety of non veg meals here and one of the best places for traditional Non-vegetarian food. KK3 feast is the highlight for lunch.">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="karikanji-container">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container1 container-fluid">
+                    <div class="navbar-header desktop">
+                        <a href="@Url.Action("Home", "MainPage")"><img src="~/Images/rsz_21logo.png" alt="logo" style="height: 130px; width: 130px;" /></a>
+                    </div>
+                    <div class="mobile_device_800px">
+                        <!-- content and some markups for mobile -->
+                        <a href="@Url.Action("Home", "MainPage")"><img src="~/Images/rsz_21logo.png" alt="logo" style="height: 50px; width: 50px;" /></a>
+                        <span class="icon" style="font-size: 30px; cursor: pointer; float: right; vertical-align: text-bottom;" onclick="myFunction()">&#9776;</span>
+                    </div>
+                    <div id="myTopnav" class="topnav">
+                        <a href="@Url.Action("Home", "MainPage")">Home</a>
+                        <a href="@Url.Action("Detail", "Menu")#biryaniMenu" onclick="myFunction()">Biryani</a>
+                        <a href="@Url.Action("Detail", "Menu")#sideDishMenu" onclick="myFunction()">Side Dish</a>
+                        <a href="@Url.Action("Detail", "Menu")#dinnerMenu" onclick="myFunction()">Dinner</a>
+                        <a href="@Url.Action("Home", "MainPage")#specialDeals" onclick="myFunction()">Deals</a>
+                        <a href="@Url.Action("Detail", "About")">About us</a>
+                        <a href="@Url.Action("Detail", "Contact")">Contact</a>
+                    </div>
+
+                    <div class="col-md-8">
+                        <section id="login">
+                            @Html.Partial("_LoginPartial")
+                        </section>
+                        <nav>
+                            <ul id="menu" class="desktop">
+
+                                <li class="container-menu">
+                                    <img src="~/Images/banana-leaf.png" alt="Menu" style="height: 100px; width: 100px;">
+                                    <div style="color: #270901;" class="centered">@Html.ActionLink("Menu", "Detail", "Menu")</div>
+
+
+                                </li>
+                                <li class="container-menu">
+                                    <img src="~/Images/banana-leaf.png" alt="About" style="height: 100px; width: 100px;">
+                                    <div style="color: #270901;" class="centered">@Html.ActionLink("About", "Detail", "About")</div>
+
+
+
+                                </li>
+                                <li class="container-menu">
+                                    <img src="~/Images/banana-leaf.png" alt="Contact" style="height: 100px; width: 100px;">
+                                    <div style="color: #270901;" class="centered">@Html.ActionLink("Contact", "Detail", "Contact")</div>
+
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Action("Home", "MainPage")#specialDeals">
+                                        <img src="~/Images/combo-deal.png" alt="Combo" style="height: 100px; width: 100px;">
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Great Vibes' rel='stylesheet'>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
+</script>
